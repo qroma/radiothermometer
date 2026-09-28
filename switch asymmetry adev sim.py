@@ -23,11 +23,16 @@ the article section "Моделювання ефективності компе�
 Author: R. I. Maisakovskyi
 """
 
+from pathlib import Path
+
 import numpy as np
 import allantools
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+
+OUTPUT_DIR = Path(__file__).resolve().parent / "switch asymmetry sim output"
+OUTPUT_DIR.mkdir(exist_ok=True)
 
 rng = np.random.default_rng(42)
 
@@ -234,7 +239,7 @@ print(f"Peak-to-floor degradation, compensated:    x{degradation_corr:.1f}")
 for tp, vr, vc, g in gains:
     print(f"At tau = {tp:6.0f} s: dT_raw = {vr*1000:8.1f} mK, dT_corr = {vc*1000:7.1f} mK, gain x{g:5.2f}")
 
-with open("results_summary.txt", "w", encoding="utf-8") as f:
+with open(OUTPUT_DIR / "results_summary.txt", "w", encoding="utf-8") as f:
     f.write("Switch asymmetry compensation -- Allan deviation simulation results\n")
     f.write("=====================================================================\n\n")
     f.write(f"T_sys = {T_sys:.1f} K, session = {T_session:.0f} s, tau0 = {tau0*1e3:.1f} ms, N = {N}\n")
@@ -254,10 +259,10 @@ with open("results_summary.txt", "w", encoding="utf-8") as f:
     for tp, vr, vc, g in gains:
         f.write(f"At tau = {tp:.0f} s: dT_raw = {vr*1000:.1f} mK, dT_corr = {vc*1000:.1f} mK, gain x{g:.2f}\n")
 
-np.savetxt("adev_uncompensated.csv",
+np.savetxt(OUTPUT_DIR / "adev_uncompensated.csv",
            np.column_stack([tau_raw, adev_raw]),
            delimiter=",", header="tau_s,adev_K", comments="")
-np.savetxt("adev_compensated.csv",
+np.savetxt(OUTPUT_DIR / "adev_compensated.csv",
            np.column_stack([tau_corr, adev_corr]),
            delimiter=",", header="tau_s,adev_K", comments="")
 
@@ -281,6 +286,5 @@ ax.set_title("Девіація Аллана вихідного сигналу\n�
 ax.grid(True, which="both", ls=":", lw=0.5)
 ax.legend(loc="lower left", fontsize=9, framealpha=0.95)
 fig.tight_layout()
-fig.savefig("adev_comparison.png", dpi=200)
-print("\nSaved: adev_comparison.png, adev_uncompensated.csv, "
-      "adev_compensated.csv, results_summary.txt")
+fig.savefig(OUTPUT_DIR / "adev_comparison.png", dpi=200)
+print(f"\nSaved output files to: {OUTPUT_DIR}")

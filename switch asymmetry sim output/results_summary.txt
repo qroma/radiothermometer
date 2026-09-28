@@ -1,0 +1,21 @@
+Switch asymmetry compensation -- Allan deviation simulation results
+=====================================================================
+
+T_sys = 429.6 K, session = 5000 s, tau0 = 5.0 ms, N = 1000000
+Nominal channel losses: RF1 = 0.9 dB, RF2 = 1.1 dB (kappa_nominal = 1.0471)
+Drift amplitude (rel. std): 2.0%, correlation times: tau_c1=90s, tau_c2=130s
+Calibration interval: 30 s
+
+Slope (short tau, uncompensated): -0.48 (theory -0.50)
+Slope (short tau, compensated):    -0.46 (theory -0.50)
+Slope (long tau, uncompensated):  -0.36
+Slope (long tau, compensated):     -0.67
+tau_opt (uncompensated) = 0.12 s, ADEV_min = 315.2 mK
+tau_opt (compensated)   = 1285.7 s, ADEV_min = 352.3 mK
+Peak-to-floor degradation, uncompensated: x19.1
+Peak-to-floor degradation, compensated:    x8.1
+At tau = 10 s: dT_raw = 2124.2 mK, dT_corr = 2501.0 mK, gain x0.85
+At tau = 30 s: dT_raw = 3457.0 mK, dT_corr = 2693.9 mK, gain x1.28
+At tau = 100 s: dT_raw = 5119.0 mK, dT_corr = 1745.1 mK, gain x2.93
+At tau = 300 s: dT_raw = 5929.7 mK, dT_corr = 910.0 mK, gain x6.52
+At tau = 900 s: dT_raw = 3510.6 mK, dT_corr = 380.1 mK, gain x9.23
