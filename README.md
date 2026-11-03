@@ -21,6 +21,8 @@ parameters and are intended for simulation and visualization.
   then compares uncompensated and periodically compensated measurements using
   overlapping Allan deviation. It writes a plot, two CSV data files, and a
   text summary to the `switch asymmetry sim output` folder beside the script.
+- `rf signal_vs_depth.py` models tissue contributions to a radiometer signal
+  across depth and frequency, and generates plots for muscle and fat tissue.
 
 ## Requirements and Running
 
