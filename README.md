@@ -23,11 +23,18 @@ parameters and are intended for simulation and visualization.
   text summary to the `switch asymmetry sim output` folder beside the script.
 - `rf signal_vs_depth.py` models tissue contributions to a radiometer signal
   across depth and frequency, and generates plots for muscle and fat tissue.
+- `adev_simulation.py` simulates switch-channel drift and compares Allan
+  deviation before and after periodic software compensation using Monte Carlo
+  runs. It saves a comparison plot and a text summary beside the script.
+- `adev_simulation_with_interpolation.py` compares uncompensated measurements
+  with sample-and-hold and linearly interpolated compensation coefficients.
+  It saves comparison plots and a text summary beside the script.
 
 ## Requirements and Running
 
-The scripts use NumPy and Matplotlib. The switch-asymmetry simulation also
-requires AllanTools (`allantools`). Install these packages in the Python
-environment selected for this project in VS Code, then run a script with
-**Run Python File**. The radiothermometer scripts display plots; the switch
-simulation saves its generated files in its output folder.
+The scripts use NumPy and Matplotlib. The ADEV simulations also require
+AllanTools (`allantools`) and SciPy (`scipy`). Install these packages in the
+Python environment selected for this project in VS Code, then run a script
+with **Run Python File**. The radiothermometer scripts display plots; the
+simulations save their generated files beside the script or in the specified
+output folder.
